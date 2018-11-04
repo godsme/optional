@@ -7,7 +7,7 @@ option(OPTIONAL_ENABLE_DOCS "Enable documentation." ON)
 
 add_library(optional INTERFACE)
 target_sources(optional INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/tl/optional.hpp)
-target_include_directories(optional INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/tl)
+target_include_directories(optional INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/tl ../tmp/include)
 
 if(OPTIONAL_ENABLE_TESTS)
   # Prepare "Catch" library for other executables

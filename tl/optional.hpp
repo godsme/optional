@@ -12,6 +12,122 @@
 // <http://creativecommons.org/publicdomain/zero/1.0/>.
 ///
 
+/*
+    optional synopsis
+// C++1z
+namespace std {
+  // 23.6.3, optional for object types
+  template <class T> class optional;
+  // 23.6.4, no-value state indicator
+  struct nullopt_t{see below };
+  inline constexpr nullopt_t nullopt(unspecified );
+  // 23.6.5, class bad_optional_access
+  class bad_optional_access;
+  // 23.6.6, relational operators
+  template <class T, class U>
+  constexpr bool operator==(const optional<T>&, const optional<U>&);
+  template <class T, class U>
+  constexpr bool operator!=(const optional<T>&, const optional<U>&);
+  template <class T, class U>
+  constexpr bool operator<(const optional<T>&, const optional<U>&);
+  template <class T, class U>
+  constexpr bool operator>(const optional<T>&, const optional<U>&);
+  template <class T, class U>
+  constexpr bool operator<=(const optional<T>&, const optional<U>&);
+  template <class T, class U>
+  constexpr bool operator>=(const optional<T>&, const optional<U>&);
+  // 23.6.7 comparison with nullopt
+  template <class T> constexpr bool operator==(const optional<T>&, nullopt_t) noexcept;
+  template <class T> constexpr bool operator==(nullopt_t, const optional<T>&) noexcept;
+  template <class T> constexpr bool operator!=(const optional<T>&, nullopt_t) noexcept;
+  template <class T> constexpr bool operator!=(nullopt_t, const optional<T>&) noexcept;
+  template <class T> constexpr bool operator<(const optional<T>&, nullopt_t) noexcept;
+  template <class T> constexpr bool operator<(nullopt_t, const optional<T>&) noexcept;
+  template <class T> constexpr bool operator<=(const optional<T>&, nullopt_t) noexcept;
+  template <class T> constexpr bool operator<=(nullopt_t, const optional<T>&) noexcept;
+  template <class T> constexpr bool operator>(const optional<T>&, nullopt_t) noexcept;
+  template <class T> constexpr bool operator>(nullopt_t, const optional<T>&) noexcept;
+  template <class T> constexpr bool operator>=(const optional<T>&, nullopt_t) noexcept;
+  template <class T> constexpr bool operator>=(nullopt_t, const optional<T>&) noexcept;
+  // 23.6.8, comparison with T
+  template <class T, class U> constexpr bool operator==(const optional<T>&, const U&);
+  template <class T, class U> constexpr bool operator==(const T&, const optional<U>&);
+  template <class T, class U> constexpr bool operator!=(const optional<T>&, const U&);
+  template <class T, class U> constexpr bool operator!=(const T&, const optional<U>&);
+  template <class T, class U> constexpr bool operator<(const optional<T>&, const U&);
+  template <class T, class U> constexpr bool operator<(const T&, const optional<U>&);
+  template <class T, class U> constexpr bool operator<=(const optional<T>&, const U&);
+  template <class T, class U> constexpr bool operator<=(const T&, const optional<U>&);
+  template <class T, class U> constexpr bool operator>(const optional<T>&, const U&);
+  template <class T, class U> constexpr bool operator>(const T&, const optional<U>&);
+  template <class T, class U> constexpr bool operator>=(const optional<T>&, const U&);
+  template <class T, class U> constexpr bool operator>=(const T&, const optional<U>&);
+  // 23.6.9, specialized algorithms
+  template <class T> void swap(optional<T>&, optional<T>&) noexcept(see below );
+  template <class T> constexpr optional<see below > make_optional(T&&);
+  template <class T, class... Args>
+    constexpr optional<T> make_optional(Args&&... args);
+  template <class T, class U, class... Args>
+    constexpr optional<T> make_optional(initializer_list<U> il, Args&&... args);
+  // 23.6.10, hash support
+  template <class T> struct hash;
+  template <class T> struct hash<optional<T>>;
+  template <class T> class optional {
+  public:
+    using value_type = T;
+    // 23.6.3.1, constructors
+    constexpr optional() noexcept;
+    constexpr optional(nullopt_t) noexcept;
+    optional(const optional &);
+    optional(optional &&) noexcept(see below);
+    template <class... Args> constexpr explicit optional(in_place_t, Args &&...);
+    template <class U, class... Args>
+      constexpr explicit optional(in_place_t, initializer_list<U>, Args &&...);
+    template <class U = T>
+      constexpr EXPLICIT optional(U &&);
+    template <class U>
+      constexpr EXPLICIT optional(const optional<U> &);
+    template <class U>
+      constexpr EXPLICIT optional(optional<U> &&);
+    // 23.6.3.2, destructor
+    ~optional();
+    // 23.6.3.3, assignment
+    optional &operator=(nullopt_t) noexcept;
+    optional &operator=(const optional &);
+    optional &operator=(optional &&) noexcept(see below );
+    template <class U = T> optional &operator=(U &&);
+    template <class U> optional &operator=(const optional<U> &);
+    template <class U> optional &operator=(optional<U> &&);
+    template <class... Args> T& emplace(Args &&...);
+    template <class U, class... Args>
+      T& emplace(initializer_list<U>, Args &&...);
+    // 23.6.3.4, swap
+    void swap(optional &) noexcept(see below );
+    // 23.6.3.5, observers
+    constexpr T const *operator->() const;
+    constexpr T *operator->();
+    constexpr T const &operator*() const &;
+    constexpr T &operator*() &;
+    constexpr T &&operator*() &&;
+    constexpr const T &&operator*() const &&;
+    constexpr explicit operator bool() const noexcept;
+    constexpr bool has_value() const noexcept;
+    constexpr T const &value() const &;
+    constexpr T &value() &;
+    constexpr T &&value() &&;
+    constexpr const T &&value() const &&;
+    template <class U> constexpr T value_or(U &&) const &;
+    template <class U> constexpr T value_or(U &&) &&;
+    // 23.6.3.6, modifiers
+    void reset() noexcept;
+  private:
+    T *val; // exposition only
+  };
+template<class T>
+  optional(T) -> optional<T>;
+} // namespace std
+*/
+
 #ifndef TL_OPTIONAL_HPP
 #define TL_OPTIONAL_HPP
 
@@ -23,6 +139,7 @@
 #include <new>
 #include <type_traits>
 #include <utility>
+#include <boost/tmp.hpp>
 
 #if (defined(_MSC_VER) && _MSC_VER == 1900)
 #define TL_OPTIONAL_MSVC2015
